@@ -1,0 +1,29 @@
+{
+  "name": "markdown-notes-to-influx-grafana-dashboard-insights",
+  "version": "1.0.0",
+  "description": "a tool to convert my note format filenames into influxdb timeseries points for insights on customer relations",
+  "main": "src/index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node -r ts-node/register ./src/index.ts",
+    "debug": "node --inspect -r ts-node/register ./src/index.ts"
+  },
+  "keywords": [
+    "notes",
+    "insights",
+    "influxdb"
+  ],
+  "author": "Peter Peerdeman <peter@peterpeerdeman.nl> (https://peterpeerdeman.nl)",
+  "license": "ISC",
+  "dependencies": {
+    "commander": "^7.2.0",
+    "dotenv": "^10.0.0",
+    "glob": "^7.1.7",
+    "influxdb-nodejs": "^3.1.0",
+    "moment": "^2.29.1"
+  },
+  "devDependencies": {
+    "ts-node": "^9.1.1",
+    "typescript": "^4.2.4"
+  }
+}
