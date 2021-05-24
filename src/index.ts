@@ -7,6 +7,7 @@ const Influx: any = require('influxdb-nodejs');
 
 const folderAction = (folder: string) => {
     const influxClient = new Influx(process.env.INFLUXDB_URL);
+    let datapointCounter = 0;
 
     glob(`${folder}/**/*.md`, {}, async (er: any, files: any) => {
         await files.forEach((file: string) => {
@@ -28,16 +29,19 @@ const folderAction = (folder: string) => {
                     birthtime: birthTimestamp,
                 })
                 .queue();
+            datapointCounter++;
         });
         influxClient
             .syncWrite()
             .then(() =>
                 console.debug(
-                    `${Date.now()} notes: influx points queue processed`
+                    `${new Date().toISOString()} notes: ${datapointCounter} influx points processed`
                 )
             )
             .catch((error: String) =>
-                console.debug(`${Date.now()} notes: write failed ${error}`)
+                console.debug(
+                    `${new Date().toISOString()} notes: write failed ${error}`
+                )
             );
     });
 };
