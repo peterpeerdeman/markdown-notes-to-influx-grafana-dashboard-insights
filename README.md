@@ -11,7 +11,7 @@ the note filenames should have the following format with a YYYYMMDD timestamp in
 ```
 20210422-lifely-interview-jane.md
 20210423-alpha-voorstel-voorbereiding.md
-20210426-beta-koen.md
+20210426-beta.md
 20210426-gamma-interview-joe.md
 20210428-delta-handover.md
 20210428-delta-intro-sander.md
