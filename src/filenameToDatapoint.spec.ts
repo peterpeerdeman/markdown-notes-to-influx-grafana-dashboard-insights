@@ -18,4 +18,11 @@ describe('filenames conversion tests', () => {
         expect(datapoint.customer).to.equal('beta');
         expect(datapoint.subject).to.equal('');
     });
+
+    it('Should throw on incorrect date', () => {
+        const filename = 'test/20210400-beta-subject.md';
+        expect(() => {
+            filenameToDatapoint(filename);
+        }).to.throw();
+    });
 });

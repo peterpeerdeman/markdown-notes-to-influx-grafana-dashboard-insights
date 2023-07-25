@@ -19,15 +19,19 @@ export const filterExtension = (inputstring: string): string => {
 };
 
 export function filenameToDatapoint(file: string): NotesDatapoint {
+    console.log(file);
     const filename = file.split('/').pop() || '';
     const [datetime, customer, ...subject] = filename.split('-');
     const stats = fs.statSync(file);
     const customerField = filterExtension(customer);
     const subjectField = subject ? subject.join(' ') : '';
-    const noteDate = moment(datetime, 'YYYYMMDD').toDate();
+    const noteDate = moment(datetime, 'YYYYMMDD');
+
+    if (!noteDate.isValid())
+        throw new Error('bad datetime detected at ' + filename);
 
     return {
-        time: noteDate,
+        time: noteDate.toDate(),
         count: 1,
         customer: customerField,
         subject: subjectField || '',
